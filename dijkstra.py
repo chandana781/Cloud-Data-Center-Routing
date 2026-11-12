@@ -85,17 +85,43 @@ def dijkstra(graph, source, destination):
 
 # Step 4: Display the available routers
 
-print("======================================")
-print(" CLOUD DATA CENTER NETWORK ROUTING")
-print(" DIJKSTRA SHORTEST PATH ALGORITHM")
-print("======================================")
 
-print("\nAvailable Routers: R1, R2, R3, R4, R5")
+# Run terminal interface only when this file
+# is executed directly, not when imported by Streamlit.
 
-# Step 5: Accept source and destination from user
+if __name__ == "__main__":
 
-source = input("\nEnter Source Router: ").strip().upper()
-destination = input("Enter Destination Router: ").strip().upper()
+    print("======================================")
+    print(" CLOUD DATA CENTER NETWORK ROUTING")
+    print(" DIJKSTRA SHORTEST PATH ALGORITHM")
+    print("======================================")
+
+    print("\nAvailable Routers:", list(graph.keys()))
+
+    source = input("\nEnter Source Router: ").strip().upper()
+    destination = input("Enter Destination Router: ").strip().upper()
+
+    if source not in graph or destination not in graph:
+        print("\nInvalid router!")
+
+    else:
+        shortest_path, total_cost = dijkstra(
+            graph, source, destination
+        )
+
+        print("\n========== ROUTING RESULT ==========")
+
+        if shortest_path is None:
+            print("No route exists.")
+
+        else:
+            print("Source Router:", source)
+            print("Destination Router:", destination)
+            print("Shortest Path:", " -> ".join(shortest_path))
+            print("Total Path Cost:", total_cost)
+
+        print("====================================")
+
 
 # Step 6: Validate the input
 
